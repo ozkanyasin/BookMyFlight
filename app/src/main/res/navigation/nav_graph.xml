@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/feedFragment">
+
+    <fragment
+        android:id="@+id/feedFragment"
+        android:name="com.example.bookmyflight.view.FeedFragment"
+        android:label="FeedFragment" >
+        <action
+            android:id="@+id/action_feedFragment_to_flightDetailFragment"
+            app:destination="@id/flightDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/flightDetailFragment"
+        android:name="com.example.bookmyflight.view.FlightDetailFragment"
+        android:label="FlightDetailFragment" >
+        <action
+            android:id="@+id/action_flightDetailFragment_to_feedFragment"
+            app:destination="@id/feedFragment" />
+    </fragment>
+</navigation>

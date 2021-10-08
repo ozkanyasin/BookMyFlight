@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/feedFragment"
+        android:title="Feed"
+        android:icon="@drawable/ic_baseline_flight_24"
+        />
+    <item
+        android:id="@+id/flightDetailFragment"
+        android:title="Basket"
+        android:icon="@drawable/ic_baseline_airplane_ticket_24"
+        />
+</menu>
