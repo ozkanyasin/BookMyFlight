@@ -8,7 +8,8 @@ import android.view.ViewGroup
 import com.example.bookmyflight.R
 
 
-class FeedFragment : Fragment() {
+class DepartureFragment : Fragment() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +21,7 @@ class FeedFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_feed, container, false)
+        return inflater.inflate(R.layout.fragment_departure, container, false)
     }
 
 

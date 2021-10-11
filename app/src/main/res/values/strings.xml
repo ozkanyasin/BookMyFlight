@@ -2,4 +2,7 @@
     <string name="app_name">BookMyFlight</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="schiphol">Schiphol</string>
+    <string name="gelen_ucuslar">Gelen Uçuşlar</string>
+    <string name="giden_ucuslar">Giden Uçuşlar</string>
 </resources>

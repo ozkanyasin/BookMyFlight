@@ -21,8 +21,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:background="?attr/colorPrimary"
+                android:background="@color/schipholBlue"
                 android:minHeight="?attr/actionBarSize"
+                app:titleTextColor="@color/white"
                 android:theme="?attr/actionBarTheme"
                 app:layout_constraintBottom_toTopOf="@+id/fragmentContainerView"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -33,6 +34,9 @@
                 android:id="@+id/bottomNav"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/schipholBlue"
+                app:itemTextColor="@color/white"
+                app:itemIconTint="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -46,10 +50,21 @@
                 app:defaultNavHost="true"
                 app:layout_constraintBottom_toTopOf="@+id/bottomNav"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/toolbar"
                 app:navGraph="@navigation/nav_graph" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.navigation.NavigationView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:itemTextColor="@color/schipholBlue"
+            app:itemIconTint="@color/schipholBlue"
+            android:id="@+id/navDrawer"
+            android:layout_gravity = "start"
+            app:headerLayout="@layout/nav_header"
+            app:menu="@menu/drawer_menu"/>
 
 
     </androidx.drawerlayout.widget.DrawerLayout>
