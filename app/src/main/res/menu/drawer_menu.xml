@@ -4,6 +4,6 @@
     <item
         android:id="@+id/reservationsFragment"
         android:title="Rezervasyonlarım"
-        android:icon="@drawable/ic_baseline_airplane_ticket_24"
+        android:icon="@drawable/airplane_ticket"
         />
 </menu>

@@ -1,5 +1,6 @@
 package com.example.bookmyflight.view
 
+import android.app.DatePickerDialog
 import android.os.Build
 import android.os.Bundle
 import android.view.*
@@ -11,7 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bookmyflight.R
-import com.example.bookmyflight.adapter.FlightListAdapter
+import com.example.bookmyflight.adapter.ArrivalListAdapter
 import com.example.bookmyflight.databinding.FragmentArrivalBinding
 import com.example.bookmyflight.service.IService
 import com.example.bookmyflight.service.repository.FlightRepository
@@ -23,7 +24,7 @@ class ArrivalFragment : Fragment() {
 
     private lateinit var viewModel : ArrivalViewModel
     private lateinit var binding: FragmentArrivalBinding
-    private val flightListAdapter = FlightListAdapter(arrayListOf())
+    private val flightListAdapter = ArrivalListAdapter(arrayListOf())
     private val flightService = IService.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,17 +38,23 @@ class ArrivalFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_arrival,container,false)
-
-
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         //view model init
-        viewModel = ViewModelProvider(this, MyViewModelFactory(FlightRepository(flightService))).get(ArrivalViewModel::class.java)
-        viewModel.getFlightsByDirection("A")
+        viewModel = ViewModelProvider(this,
+            MyViewModelFactory(FlightRepository(flightService))).get(ArrivalViewModel::class.java)
+
+        viewModel.pickDate(binding.imageButton)
+
+        /*viewModel.getFlights()*/
+
+        viewModel.getFlightsByDate()
+
+
 
         binding.arrivalListRv.layoutManager = LinearLayoutManager(context)
         binding.arrivalListRv.adapter = flightListAdapter
@@ -62,7 +69,7 @@ class ArrivalFragment : Fragment() {
         viewModel.flightList.observe(viewLifecycleOwner, Observer {
             it?.let {
                 binding.arrivalListRv.visibility = View.VISIBLE
-                flightListAdapter.updateFlightList(it.flights!!)
+                flightListAdapter.updateArrivalList(it.flights!!)
                 binding.arrivalLoading.visibility = View.GONE
             }
         })
@@ -78,5 +85,6 @@ class ArrivalFragment : Fragment() {
             }
         })*/
     }
+
 
 }

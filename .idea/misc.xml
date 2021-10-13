@@ -6,12 +6,15 @@
         <entry key="..\:/Users/90534/AndroidStudioProjects/BookMyFlight/app/src/main/res/drawable/edit_calendar_24.xml" value="0.26615384615384613" />
         <entry key="..\:/Users/90534/AndroidStudioProjects/BookMyFlight/app/src/main/res/drawable/ic_baseline_flight_24.xml" value="0.26615384615384613" />
         <entry key="..\:/Users/90534/AndroidStudioProjects/BookMyFlight/app/src/main/res/layout/activity_main.xml" value="0.264" />
-        <entry key="..\:/Users/90534/AndroidStudioProjects/BookMyFlight/app/src/main/res/layout/fragment_arrival.xml" value="0.22010869565217392" />
+        <entry key="..\:/Users/90534/AndroidStudioProjects/BookMyFlight/app/src/main/res/layout/deneme.xml" value="0.536" />
+        <entry key="..\:/Users/90534/AndroidStudioProjects/BookMyFlight/app/src/main/res/layout/fragment_arrival.xml" value="0.4" />
         <entry key="..\:/Users/90534/AndroidStudioProjects/BookMyFlight/app/src/main/res/layout/fragment_departure.xml" value="0.22010869565217392" />
         <entry key="..\:/Users/90534/AndroidStudioProjects/BookMyFlight/app/src/main/res/layout/fragment_feed.xml" value="0.22916666666666666" />
         <entry key="..\:/Users/90534/AndroidStudioProjects/BookMyFlight/app/src/main/res/layout/fragment_flight.xml" value="0.22916666666666666" />
         <entry key="..\:/Users/90534/AndroidStudioProjects/BookMyFlight/app/src/main/res/layout/fragment_flight_detail.xml" value="0.24456521739130435" />
         <entry key="..\:/Users/90534/AndroidStudioProjects/BookMyFlight/app/src/main/res/layout/fragment_reservations.xml" value="0.264" />
+        <entry key="..\:/Users/90534/AndroidStudioProjects/BookMyFlight/app/src/main/res/layout/item_arrival_flight.xml" value="0.4" />
+        <entry key="..\:/Users/90534/AndroidStudioProjects/BookMyFlight/app/src/main/res/layout/item_departure_flight.xml" value="0.4" />
         <entry key="..\:/Users/90534/AndroidStudioProjects/BookMyFlight/app/src/main/res/layout/item_flight.xml" value="0.4" />
         <entry key="..\:/Users/90534/AndroidStudioProjects/BookMyFlight/app/src/main/res/layout/nav_header.xml" value="0.21557971014492755" />
         <entry key="..\:/Users/90534/AndroidStudioProjects/BookMyFlight/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />
