@@ -33,8 +33,8 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ArrivalViewModel(val repository: FlightRepository, application: Application)
-    : BaseViewModel(application), DatePickerDialog.OnDateSetListener  {
+class ArrivalViewModel(val repository: FlightRepository)
+    : ViewModel(), DatePickerDialog.OnDateSetListener  {
 
     val flightList = MutableLiveData<FlightModel>()
     val flightLoading = MutableLiveData<Boolean>()
