@@ -5,8 +5,6 @@ import com.google.gson.annotations.SerializedName
 
 
 class AirlineModel {
-    @SerializedName("airlines")
-    @Expose
     var airlines: List<Airline>? = null
 }
 
@@ -14,9 +12,6 @@ class AirlineModel {
 class Airline {
     var iata: String? = null
     var icao: String? = null
-    var nvls = 0
-    @SerializedName("publicName")
-    @Expose
     var publicName: String? = null
 }
 
