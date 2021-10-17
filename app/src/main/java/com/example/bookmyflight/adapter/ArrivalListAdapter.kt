@@ -1,5 +1,6 @@
 package com.example.bookmyflight.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -18,26 +19,25 @@ class ArrivalListAdapter(val arrivalFlightList: ArrayList<Flight>)  :
 
         }
 
-   /* private var flightList: ArrayList<Flight> = arrayListOf()*/
-    /*constructor(listener :IFlightAdapter)*  burası yukarda implemente idi*/
-    /*private var mListener : IFlightAdapter = listener*/
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArrivalListViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = DataBindingUtil.inflate<ItemArrivalFlightBinding>(inflater, R.layout.item_arrival_flight,parent,false)
         return ArrivalListViewHolder(view)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ArrivalListViewHolder, position: Int) {
 
-        holder.view.textScheduleTime.text =
+        holder.view.textScheduleTime.text = "Schedule Time:\n"+
             arrivalFlightList[position].scheduleTime?.substring(0,5) ?: "bilinmiyor"
-        holder.view.textRoute.text = arrivalFlightList[position].route?.destinations.toString()
-        holder.view.textactualLandingTime.text =
-            arrivalFlightList[position].actualLandingTime?.substring(11,16) ?: "bilinmiyor"
-        holder.view.textFlightState.text = arrivalFlightList[position].publicFlightState?.flightStates.toString()
-        holder.view.textAirlineName.text = arrivalFlightList[position].airlineCode.toString()
-        holder.view.textFlightName.text = arrivalFlightList[position].flightName
+        holder.view.textRoute.text = "Destination:\n" + arrivalFlightList[position].route?.destinations.toString()
+        holder.view.textactualLandingTime.text = "Landing Time:\n" +
+            arrivalFlightList[position].actualLandingTime?.substring(11,16)
+                if (arrivalFlightList[position].actualLandingTime == null)
+                    holder.view.textactualLandingTime.text = "Landing Time:\nUnscheduled"
+        holder.view.textFlightState.text = "Flight State:\n" + arrivalFlightList[position].publicFlightState?.flightStates.toString()
+        holder.view.textAirlineName.text = arrivalFlightList[position].airlineName?.publicName ?: "bilinmiyor"
+        holder.view.textFlightName.text = "Flight Name: "+ arrivalFlightList[position].flightName
 
 
     }
@@ -45,6 +45,7 @@ class ArrivalListAdapter(val arrivalFlightList: ArrayList<Flight>)  :
     override fun getItemCount(): Int {
         return arrivalFlightList.size
     }
+
 
     fun updateArrivalList(newFlightList : ArrayList<Flight>) {
         arrivalFlightList.clear()

@@ -69,16 +69,6 @@ class ArrivalFragment : Fragment() {
             }
         })
 
-       /* viewModel.flightLoading.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                if (it){
-                    binding.arrivalListRv.visibility = View.VISIBLE
-                    binding.arrivalListRv.visibility = View.GONE
-                }else{
-                    binding.arrivalListRv.visibility = View.GONE
-                }
-            }
-        })*/
     }
 
 

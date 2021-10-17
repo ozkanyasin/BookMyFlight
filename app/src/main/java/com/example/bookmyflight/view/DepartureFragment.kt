@@ -21,7 +21,6 @@ import com.example.bookmyflight.viewmodel.MyViewModelFactory
 class DepartureFragment : Fragment() {
 
     private lateinit var viewModel : DepartureViewModel
-    private lateinit var binding: FragmentDepartureBinding
     private val flightListAdapter = DepartureListAdapter(arrayListOf())
     private val flightService = IService.getInstance()
 
@@ -34,21 +33,23 @@ class DepartureFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_departure,container,false)
-        return binding.root
+        // Inflate the layout for this fragment and init viewmodel
+        viewModel = ViewModelProvider(this, MyViewModelFactory(FlightRepository(flightService))).get(
+            DepartureViewModel::class.java)
+        viewModel.binding = DataBindingUtil.inflate(inflater,R.layout.fragment_departure,container,false)
+        return viewModel.binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         //view model init
-        viewModel = ViewModelProvider(this, MyViewModelFactory(FlightRepository(flightService))).get(
-            DepartureViewModel::class.java)
-        viewModel.getFlights()
+        viewModel.binding.textCurrentDate.text = viewModel.getCurrentDate()
+        viewModel.scheduleDate = viewModel.getCurrentDate()
+        viewModel.pickDate(viewModel.binding.imageFilterButton)
 
-        binding.departureListRv.layoutManager = LinearLayoutManager(context)
-        binding.departureListRv.adapter = flightListAdapter
+        viewModel.binding.departureListRv.layoutManager = LinearLayoutManager(context)
+        viewModel.binding.departureListRv.adapter = flightListAdapter
 
         observeLiveData()
     }
@@ -56,22 +57,12 @@ class DepartureFragment : Fragment() {
     fun observeLiveData() {
         viewModel.flightList.observe(viewLifecycleOwner, Observer {
             it?.let {
-                binding.departureListRv.visibility = View.VISIBLE
+                viewModel.binding.departureListRv.visibility = View.VISIBLE
                 flightListAdapter.updateDepartureList(it.flights!!)
-                binding.departureLoading.visibility = View.GONE
+                viewModel.binding.departureLoading.visibility = View.GONE
             }
         })
 
-        /* viewModel.flightLoading.observe(viewLifecycleOwner, Observer {
-             it?.let {
-                 if (it){
-                     binding.arrivalListRv.visibility = View.VISIBLE
-                     binding.arrivalListRv.visibility = View.GONE
-                 }else{
-                     binding.arrivalListRv.visibility = View.GONE
-                 }
-             }
-         })*/
     }
 
 

@@ -1,5 +1,6 @@
 package com.example.bookmyflight.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -7,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bookmyflight.R
 import com.example.bookmyflight.databinding.ItemDepartureFlightBinding
 import com.example.bookmyflight.mode.Flight
-import com.example.bookmyflight.model.Airline
 
 class DepartureListAdapter(val departureFlightList: ArrayList<Flight>) :
     RecyclerView.Adapter<DepartureListAdapter.DepartureListViewHolder>() {
@@ -23,13 +23,16 @@ class DepartureListAdapter(val departureFlightList: ArrayList<Flight>) :
         return DepartureListAdapter.DepartureListViewHolder(view)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: DepartureListViewHolder, position: Int) {
-        holder.view.textScheduleTime.text = departureFlightList[position].scheduleTime.toString().substring(0,5)
-        holder.view.textRoute.text = departureFlightList[position].route?.destinations.toString()
-        holder.view.textGate.text = departureFlightList[position].gate.toString()
-        holder.view.textFlightState.text = departureFlightList[position].publicFlightState?.flightStates.toString()
+        holder.view.textScheduleTime.text = "Schedule Time\n"+ departureFlightList[position].scheduleTime.toString().substring(0,5)
+        holder.view.textRoute.text = "Destination\n"+departureFlightList[position].route?.destinations.toString()
+        holder.view.textGate.text = "GATE: "+departureFlightList[position].gate.toString()
+            if (departureFlightList[position].gate == null)
+                holder.view.textGate.text = "GATE:\nUnscheduled"
+        holder.view.textFlightState.text = "Flight State\n"+ departureFlightList[position].publicFlightState?.flightStates.toString()
         holder.view.textAirlineName.text = departureFlightList[position].airlineCode.toString()
-        holder.view.textFlightName.text = departureFlightList[position].flightName
+        holder.view.textFlightName.text = "Flight Name: "+ departureFlightList[position].flightName
 
     }
 
