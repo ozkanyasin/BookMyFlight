@@ -45,6 +45,8 @@ class FlightDetailFragment : Fragment() {
             flightUuid = FlightDetailFragmentArgs.fromBundle(it).flightUuid
         }
 
+        viewModel.getData(flightUuid)
+
     }
 
 }
