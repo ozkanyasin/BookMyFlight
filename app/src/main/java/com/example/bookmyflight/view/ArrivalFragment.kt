@@ -24,11 +24,6 @@ class ArrivalFragment : Fragment() {
     private val flightListAdapter = ArrivalListAdapter(arrayListOf())
     private val flightService = IService.getInstance()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,11 +45,15 @@ class ArrivalFragment : Fragment() {
         viewModel.binding.textView2.text = viewModel.getCurrentDate()
         viewModel.scheduleDate = viewModel.getCurrentDate()
         viewModel.pickDate(viewModel.binding.imageButton)
-
-
         viewModel.binding.arrivalListRv.layoutManager = LinearLayoutManager(context)
         viewModel.binding.arrivalListRv.adapter = flightListAdapter
 
+        viewModel.binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.binding.arrivalListRv.visibility = View.GONE
+            viewModel.binding.arrivalLoading.visibility = View.VISIBLE
+            viewModel.getFlights()
+            viewModel.binding.swipeRefreshLayout.isRefreshing = false
+        }
         observeLiveData()
 
     }

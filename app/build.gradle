@@ -81,4 +81,8 @@ dependencies {
     kapt "androidx.room:room-compiler:$roomVersion"
     implementation "androidx.room:room-ktx:$roomVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1"
+
+    //QR code
+    implementation 'com.journeyapps:zxing-android-embedded:3.0.2@aar'
+    implementation 'com.google.zxing:core:3.2.0'
 }

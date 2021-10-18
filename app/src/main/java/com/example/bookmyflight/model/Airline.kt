@@ -1,7 +1,8 @@
 package com.example.bookmyflight.model
 
 
-
-class AirlineModel {
+data class AirlineModel (
     var publicName: String? = null
-}
+)
+
+

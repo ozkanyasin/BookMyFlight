@@ -12,6 +12,8 @@ class MyViewModelFactory(private val repository: FlightRepository) : ViewModelPr
             ArrivalViewModel(this.repository) as T
         } else if (modelClass.isAssignableFrom(DepartureViewModel::class.java)){
             DepartureViewModel(this.repository) as T
+        } else if (modelClass.isAssignableFrom(DetailViewModel::class.java)){
+            DetailViewModel(this.repository) as T
         } else {
             throw IllegalArgumentException("ViewModel Not Found")
         }

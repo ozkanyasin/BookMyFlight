@@ -9,6 +9,7 @@ import android.widget.DatePicker
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.bookmyflight.adapter.DepartureListAdapter
 import com.example.bookmyflight.databinding.FragmentDepartureBinding
 import com.example.bookmyflight.mode.FlightModel
 import com.example.bookmyflight.service.repository.FlightRepository
@@ -25,7 +26,6 @@ class DepartureViewModel(val repository: FlightRepository)
     : ViewModel(), DatePickerDialog.OnDateSetListener {
 
     val flightList = MutableLiveData<FlightModel>()
-    val flightLoading = MutableLiveData<Boolean>()
     lateinit var binding : FragmentDepartureBinding
     var day = 0
     var month = 0
@@ -69,16 +69,10 @@ class DepartureViewModel(val repository: FlightRepository)
         day = cal.get(Calendar.DAY_OF_MONTH)
         month = cal.get(Calendar.MONTH)
         year = cal.get(Calendar.YEAR)
-
-
-
         val date = year.toString() + "-" + (month+1).toString() + "-" + day.toString()
         // date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
         return date
-
-
         /*  var currentDate : String = DateFormat.getDateInstance().format(cal.time)
-
           return currentDate*/
     }
 

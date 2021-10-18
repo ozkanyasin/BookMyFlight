@@ -18,6 +18,10 @@
         <action
             android:id="@+id/action_departureFragment_to_arrivalFragment"
             app:destination="@id/arrivalFragment" />
+        <action
+            android:id="@+id/action_departureFragment_to_flightDetailFragment"
+            app:destination="@id/flightDetailFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/reservationsFragment"
@@ -27,4 +31,14 @@
             android:id="@+id/action_reservationsFragment_to_arrivalFragment2"
             app:destination="@id/arrivalFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/flightDetailFragment"
+        android:name="com.example.bookmyflight.view.FlightDetailFragment"
+        android:label="FlightDetailFragment" >
+        <argument
+            android:name="flightUuid"
+            app:argType="string"
+            android:defaultValue=""/>
+    </fragment>
+
 </navigation>

@@ -11,32 +11,34 @@ import com.example.bookmyflight.adapter.ArrivalListAdapter
 import com.example.bookmyflight.databinding.FragmentArrivalBinding
 import com.example.bookmyflight.mode.FlightModel
 import com.example.bookmyflight.model.AirlineModel
+import com.example.bookmyflight.service.IService
 import com.example.bookmyflight.service.repository.FlightRepository
+import io.reactivex.disposables.CompositeDisposable
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.text.SimpleDateFormat
-import java.time.*
 import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.collections.ArrayList
 
 class ArrivalViewModel(val repository: FlightRepository)
     : ViewModel(), DatePickerDialog.OnDateSetListener  {
 
-    val flightListAdapter = ArrivalListAdapter(arrayListOf())
+    val disposable = CompositeDisposable()
     val flightList = MutableLiveData<FlightModel>()
     val airline = MutableLiveData<AirlineModel>()
     var flightListPage = 1
     var flightListResponse : FlightModel? = null
 
-    val flightLoading = MutableLiveData<Boolean>()
 
     lateinit var binding: FragmentArrivalBinding
 
     var day = 0
     var month = 0
     var year = 0
+    var hour = 0
+    var minute = 0
+    var second = 0
     var savedDay = 0
     var savedMonth = 0
     var savedYear = 0
@@ -51,11 +53,17 @@ class ArrivalViewModel(val repository: FlightRepository)
             return field
         }
 
+    var deneme = ""
+        set(value) {
+            field = value
+        }
+        get() {
+            return field
+        }
 
     fun getAirline(iata: String): String {
 
-        val response = repository.getAirline(iata)
-        var deneme = ""
+        val response = repository.getAirline("TK")
 
         response.enqueue(object  : Callback<AirlineModel>{
             override fun onResponse(call: Call<AirlineModel>, response: Response<AirlineModel>) {
@@ -69,6 +77,16 @@ class ArrivalViewModel(val repository: FlightRepository)
         })
         return deneme
     }
+
+    /*fun getDataFromAPI() {
+
+        disposable.add(
+            apiService.getInstance()
+                .
+        )
+
+    }*/
+
 
     fun getFlights() {
 
@@ -95,14 +113,12 @@ class ArrivalViewModel(val repository: FlightRepository)
 
         val cal = Calendar.getInstance()
         val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
-        val deneme = simpleDateFormat.format(cal.time)
-
         day = cal.get(Calendar.DAY_OF_MONTH)
         month = cal.get(Calendar.MONTH)
         year = cal.get(Calendar.YEAR)
-
-        var timeZone = ZoneId.of("Asia/Istanbul")
-
+        hour = cal.get(Calendar.HOUR)
+        minute = cal.get(Calendar.MINUTE)
+        second = cal.get(Calendar.SECOND)
         val date = year.toString() + "-" + (month+1).toString() + "-" + day.toString()
 
         return date

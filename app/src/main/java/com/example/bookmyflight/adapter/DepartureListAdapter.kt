@@ -2,15 +2,18 @@ package com.example.bookmyflight.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookmyflight.R
 import com.example.bookmyflight.databinding.ItemDepartureFlightBinding
 import com.example.bookmyflight.mode.Flight
+import com.example.bookmyflight.view.DepartureFragmentDirections
 
 class DepartureListAdapter(val departureFlightList: ArrayList<Flight>) :
-    RecyclerView.Adapter<DepartureListAdapter.DepartureListViewHolder>() {
+    RecyclerView.Adapter<DepartureListAdapter.DepartureListViewHolder>(){
 
 
     class DepartureListViewHolder(var view: ItemDepartureFlightBinding) : RecyclerView.ViewHolder(view.root) {
@@ -20,7 +23,7 @@ class DepartureListAdapter(val departureFlightList: ArrayList<Flight>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DepartureListViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = DataBindingUtil.inflate<ItemDepartureFlightBinding>(inflater, R.layout.item_departure_flight,parent,false)
-        return DepartureListAdapter.DepartureListViewHolder(view)
+        return DepartureListViewHolder(view)
     }
 
     @SuppressLint("SetTextI18n")
@@ -34,6 +37,17 @@ class DepartureListAdapter(val departureFlightList: ArrayList<Flight>) :
         holder.view.textAirlineName.text = departureFlightList[position].airlineCode.toString()
         holder.view.textFlightName.text = "Flight Name: "+ departureFlightList[position].flightName
 
+        holder.itemView.setOnClickListener {
+            val action = departureFlightList[position].id?.let { it1 ->
+                DepartureFragmentDirections.actionDepartureFragmentToFlightDetailFragment(
+                    it1
+                )
+            }
+            if (action != null) {
+                Navigation.findNavController(it).navigate(action)
+            }
+        }
+
     }
 
     override fun getItemCount(): Int {
@@ -46,5 +60,6 @@ class DepartureListAdapter(val departureFlightList: ArrayList<Flight>) :
         notifyDataSetChanged()
 
     }
+
 
 }
