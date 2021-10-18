@@ -20,7 +20,11 @@
             app:destination="@id/arrivalFragment" />
         <action
             android:id="@+id/action_departureFragment_to_flightDetailFragment"
-            app:destination="@id/flightDetailFragment" />
+            app:destination="@id/flightDetailFragment"
+            app:enterAnim="@anim/slide_in_top"
+            app:exitAnim="@anim/slide_out_bottom"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
 
     </fragment>
     <fragment
@@ -29,6 +33,9 @@
         android:label="Rezervasyonlarım" >
         <action
             android:id="@+id/action_reservationsFragment_to_arrivalFragment2"
+            app:destination="@id/arrivalFragment" />
+        <action
+            android:id="@+id/action_reservationsFragment_to_arrivalFragment"
             app:destination="@id/arrivalFragment" />
     </fragment>
     <fragment
@@ -39,6 +46,9 @@
             android:name="flightUuid"
             app:argType="string"
             android:defaultValue=""/>
+        <action
+            android:id="@+id/action_flightDetailFragment_to_departureFragment"
+            app:destination="@id/departureFragment" />
     </fragment>
 
 </navigation>
